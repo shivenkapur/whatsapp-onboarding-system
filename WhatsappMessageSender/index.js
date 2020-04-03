@@ -42,7 +42,6 @@ export default async function start (test = false){
                     messageSent = await sendMessage(page, messageText, contactClicked, test)
                 else
                 {
-                    console.log('Here')
                     contactClicked = await getContactViaWaMe(page, message['Phone'])
                     messageSent = await sendMessage(page, messageText, contactClicked, test);
                 }
@@ -50,17 +49,16 @@ export default async function start (test = false){
                 if(messageSent){
                     let data_row = {range: 'Message Queue!E' + message['Row'], values: [[ date ]]};
                     data.push(data_row);
-                    console.log(data_row)
                 }
         }
         googleSheets.batchUpdateGoogleSheet(INTERNAL_TOKEN, data);
+        
     } catch(error){
         console.log(error);
-        console.log(data)
         googleSheets.batchUpdateGoogleSheet(INTERNAL_TOKEN, data);
     }
     
-    
+    process.exit()
 }
 
 async function messagesToSend(messageQueueData){
@@ -79,4 +77,4 @@ async function messagesToSend(messageQueueData){
     }
     return messages;
 }
-start(true)
+start(false)

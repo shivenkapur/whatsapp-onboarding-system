@@ -4,12 +4,10 @@ import fs from 'fs'
 export default {
     importContacts : async function getContacts (page) {
         try{
-            console.log("REACHED HEREEEE _____1")
-            console.log("REACHED HEREEEE _____")
             let settingsElement = await page.findByXpath('//div[@title="Show Actions Menu"]')
             await settingsElement.click()
 
-            let importVcard = await page.findByXpath('//input[@name="sc2054"]')
+            let importVcard = await page.findByXpath('//input[@title="Import vCard…"]')
             importVcard.sendKeys(process.cwd() + '/contacts.vcf')
 
             await new Promise(resolve => setTimeout(resolve, 10000));
@@ -26,7 +24,6 @@ export default {
           fs.unlinkSync('contacts.vcf')
         }catch(error){} 
 
-        console.log(messages)
         for(let messageIndex = 0; messageIndex < messages.length; messageIndex++){
             let message = messages[messageIndex]
             var vCard = vCardsJS();
@@ -38,7 +35,6 @@ export default {
             
             let vCardString = vCard.getFormattedString()
             vCards.push(vCardString)
-            //console.log(vCards)
             fs.appendFileSync('contacts.vcf', vCardString, { encoding: 'utf8' });
           
         }
@@ -49,7 +45,7 @@ export default {
         
         try{
             
-            let contactInputElement = await page.findByXpath('//*[@id="sc1684"]/div[1]/input')
+            let contactInputElement = await page.findByXpath('//*[@id="sc1686"]/div[1]/input')
 
             await contactInputElement.clear()
             await contactInputElement.sendKeys(message['Name'])

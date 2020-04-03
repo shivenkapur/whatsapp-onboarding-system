@@ -23,6 +23,7 @@ async function start(){
     let messagesToSend = await getMessagesfromCaregivers(allOtherMessages, videoCallReminderMessage);
 
     updateSheets(messagesToSend)
+    console.log(messagesToSend)
 
 }
 

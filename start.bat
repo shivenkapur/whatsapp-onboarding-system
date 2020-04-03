@@ -1,0 +1,1 @@
+cd "C:\Users\Evercare Admin\Documents\GitHub\Whatsapp-Automator-2.0\Message-Tracker" && npm run dev && cd "C:\Users\Evercare Admin\Documents\GitHub\Whatsapp-Automator-2.0\iCloudContacts"  && npm run dev && cd "C:\Users\Evercare Admin\Documents\GitHub\Whatsapp-Automator-2.0\WhatsappMessageSender" && npm run dev

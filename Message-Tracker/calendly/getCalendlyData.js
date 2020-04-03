@@ -7,6 +7,5 @@ export default async function getCalendlyData() {
   let columns = {'Potential CG' : -1, 'Sent to MQ' : -1, 'Staff': -1, 'Scheduled Date': -1, 'True Phone': -1};
 
   calendlyData = await convertSheetDatatoDict(calendlyData, columns)
-  console.log(calendlyData)
   return calendlyData;
 }

@@ -17,7 +17,6 @@ export default async function start(staffTrackerCaregivers){
 
             let staffTrackerCaregiver = staffTrackerCaregivers[staffNumber]
 
-            console.log(hasNoData(caregiver['Sent to MQ']))
             if(hasData(staffNumber) && 
                 hasData(caregiver['Potential CG']) &&
                 hasNoData(caregiver['Sent to MQ']) && 
