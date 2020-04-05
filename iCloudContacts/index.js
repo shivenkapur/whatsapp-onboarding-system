@@ -41,7 +41,7 @@ async function start(){
         }
         page.driver.quit()
     }
-    await new Promise(resolve => setTimeout(resolve, 3000));
+    await new Promise(resolve => setTimeout(resolve, 15000));
     
     process.exit()
 }
@@ -78,10 +78,11 @@ async function getCaregiversToAdd(page, caregivers){
                     }
                     
                     await new Promise(resolve => setTimeout(resolve, 1000));
-                } catch(error){console.log('HIII getCaregiversToAdd')}
+                } catch(error){
+                    console.log(error);console.log('HIII getCaregiversToAdd')}
             }
         }
-        updateMessageQueue(caregivers);
+        await updateMessageQueue(caregivers);
     }
     catch(error){console.log('HIII getCaregiversToAdd')}
     

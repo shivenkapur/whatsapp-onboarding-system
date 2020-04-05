@@ -1,6 +1,6 @@
 import calendly from './calendly/index.js'
 import staffTracker from './staffTracker/index.js'
-import getCaregiversAfterDate from './utils/getCaregiversAfterDate.js'
+import getCaregivers from './utils/getCaregivers.js'
 import messageTracker from './messageTracker/index.js'
 
 import updateMainMessageTracker from '../messageTracker/updateMessageTracker.js'
@@ -22,7 +22,8 @@ async function start(){
     let staffTrackerCaregivers = await staffTracker();
 
     //get caregivers after a specific date
-    let caregiversRegisteredThisYear = await getCaregiversAfterDate(staffTrackerCaregivers, caregiversAfterDate)
+    let caregiversRegisteredThisYear = await getCaregivers.getCaregiversAfterDate(staffTrackerCaregivers, caregiversAfterDate)
+
 
     console.log('Getting Calendly Data ...')
     //getting messages from calendly data
