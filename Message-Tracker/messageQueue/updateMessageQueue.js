@@ -3,7 +3,7 @@ import convertSheetDatatoDict from '../utils/convertSheetDatatoDict.js'
 import cellData from '../utils/cellData.js'
 let INTERNAL_TOKEN = '700o2k0hnl7fvwv8kb0o6p';
 let SHEET_NAME = 'Message Queue'
-export default async function updateMessageQueue(caregivers, date) {
+export default async function updateMessageQueue(caregivers, date, INTERNAL_TOKEN = INTERNAL_TOKEN) {
     let data = [];
     
     let messageQueueData = await googleSheets.getGoogleSheetData(INTERNAL_TOKEN);

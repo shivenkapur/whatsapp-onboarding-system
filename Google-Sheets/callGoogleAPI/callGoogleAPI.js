@@ -3,7 +3,7 @@ const { google } = require('googleapis')
 import authorize from '../authorisation/auth.js'
 
 export default { 
-  getGoogleSheetData: async function getGoogleSheetData(sheetDetails, range = ""){
+  getGoogleSheetData: async function getGoogleSheetData(sheetDetails, range = "", test = ""){
     const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
     let oAuthToken = await authorize(SCOPES, sheetDetails['TOKEN_PATH_READ']);
 
@@ -11,7 +11,7 @@ export default {
       let sheets = await google.sheets('v4');
       let sheetData = await sheets.spreadsheets.values.get({
         spreadsheetId: sheetDetails.SHEET_ID,
-        range: sheetDetails.SHEET_NAME + range,
+        range: test + sheetDetails.SHEET_NAME + range,
         auth: oAuthToken
       });
 
@@ -21,7 +21,7 @@ export default {
 
   },
 
-  appendGoogleSheet: async function appendGoogleSheet(sheetDetails, rows){
+  appendGoogleSheet: async function appendGoogleSheet(sheetDetails, rows, test = ""){
     const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
 
     if( sheetDetails['TOKEN_PATH_WRITE'] == undefined)
@@ -35,7 +35,7 @@ export default {
 
       let result = await sheets.spreadsheets.values.append({
         spreadsheetId: sheetDetails.SHEET_ID,
-        range: sheetDetails.SHEET_NAME,
+        range: test + sheetDetails.SHEET_NAME,
         valueInputOption: 'USER_ENTERED',
         resource: resource,
         auth: oAuthToken
@@ -44,7 +44,7 @@ export default {
     }
   },
 
-  batchUpdateGoogleSheet: async function batchUpdateGoogleSheet(sheetDetails, data){
+  batchUpdateGoogleSheet: async function batchUpdateGoogleSheet(sheetDetails, data, test = ""){
 
     const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
     if( sheetDetails['TOKEN_PATH_WRITE'] == undefined)
@@ -70,7 +70,7 @@ export default {
     
   },
 
-  batchGetGoogleSheetData: async function batchGetGoogleSheetData(sheetDetails, data){
+  batchGetGoogleSheetData: async function batchGetGoogleSheetData(sheetDetails, data, test = ""){
     const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
 
     let oAuthToken = await authorize(SCOPES, sheetDetails['TOKEN_PATH_WRITE']);

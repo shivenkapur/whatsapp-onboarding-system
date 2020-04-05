@@ -1,4 +1,5 @@
-export default async function convertSheetDatatoDict(data, columns){
+//converts a 2D array into an array of dicts
+export default async function convertSheetDatatoDict(data, columns, identifier = ""){
 
     for(let index = 0; index <= data[0].length;index++){
       let columnName = data[0][index]
@@ -16,7 +17,10 @@ export default async function convertSheetDatatoDict(data, columns){
       Object.entries(columns).forEach(([key, value]) => {
         dict[key] = `${row[value]}`
       });
-      return_list.push(dict)
+      if(identifier == "")
+        return_list.push(dict);
+      else
+        return_list(dict[identifier]) = dict;
     }
     return return_list;
 }

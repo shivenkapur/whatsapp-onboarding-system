@@ -3,6 +3,7 @@ import signIn from './signIn/signIn.js'
 import contacts from './contacts/contacts.js'
 import googleSheets from '../Google-Sheets/prod/api.js'
 import convertSheetDatatoDict from './utils/convertSheetDatatoDict.js';
+import selectors from './configuration/selectors.js'
 
 const INTERNAL_TOKEN = '700o2k0hnl7fvwv8kb0o6p';
 async function start(){
@@ -19,22 +20,20 @@ async function start(){
             await page.visit('https://www.icloud.com/contacts');
             await signIn(page)
             await page.switchToFrame("contacts")
-            await page.findByXpath('//div[contains(@class, "atv4 contacts sc1619 sc-view headered-list-header sticky")]', 50000)
+            await page.findByXpath(selectors.contactList, 50000)
             
             caregiverstoAdd = await getCaregiversToAdd(page, caregiverstoAdd);
             console.log(caregiverstoAdd)
 
             if(caregiverstoAdd.length > 0)
             {
-                await updateMessageQueue(caregiverstoAdd)
-
                 await contacts.getvCards(caregiverstoAdd)
                 await contacts.importContacts(page);
             }
            
         
         }catch(error){
-            if (err.code === 'ENOENT'){
+            if (error.code === 'ENOENT'){
 
             }
             console.log('HIII iCloud start', error)
@@ -55,7 +54,8 @@ function messageQueueNotAdded(messageQueueData){
     for(let messageIndex in messageQueueData){
         let message = messageQueueData[messageIndex]
         if(!message['Added to iCloud'].includes('Added')){
-            caregiverstoAdd.push(message)
+            message['Row'] = (parseInt(messageIndex) + 1).toString()
+            caregiverstoAdd.push(message);
         }
     }
 
@@ -75,12 +75,13 @@ async function getCaregiversToAdd(page, caregivers){
                     if(!exists)
                     {
                         caregiverstoAdd.push(message)
-                        message['Row'] = (parseInt(messageIndex) + 1).toString()
                     }
+                    
                     await new Promise(resolve => setTimeout(resolve, 1000));
                 } catch(error){console.log('HIII getCaregiversToAdd')}
             }
         }
+        updateMessageQueue(caregivers);
     }
     catch(error){console.log('HIII getCaregiversToAdd')}
     
@@ -93,9 +94,12 @@ async function updateMessageQueue(messageQueueData){
 
     for(let messageIndex in messageQueueData){
         let message = messageQueueData[messageIndex];
-        let data_row = {range: 'Message Queue!G' + message['Row'], values: [[ 'Added' ]]};
-        console.log(data_row);
-        sheetData.push(data_row);
+        if(message['Row'])
+        {
+            let data_row = {range: 'Message Queue!G' + message['Row'], values: [[ 'Added' ]]};
+            console.log(data_row);
+            sheetData.push(data_row);
+        }
     }
-    googleSheets.batchUpdateGoogleSheet(INTERNAL_TOKEN, sheetData);
+    await googleSheets.batchUpdateGoogleSheet(INTERNAL_TOKEN, sheetData);
 }

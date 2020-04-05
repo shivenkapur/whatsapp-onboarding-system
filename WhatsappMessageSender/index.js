@@ -18,6 +18,7 @@ export default async function start (test = false){
     messageQueueData = await convertSheetDatatoDict(messageQueueData, columns);
 
     let messages = await messagesToSend(messageQueueData)
+    console.log(messages)
     let page = await openWhatsapp();
 
     let contactSearch = await signIntoWhatsapp(page);

@@ -1,13 +1,13 @@
 import vCardsJS from 'vcards-js'
 import fs from 'fs'
-
+import selectors from '../configuration/selectors.js'
 export default {
     importContacts : async function getContacts (page) {
         try{
-            let settingsElement = await page.findByXpath('//div[@title="Show Actions Menu"]')
+            let settingsElement = await page.findByXpath(selectors.importContactsMenu)
             await settingsElement.click()
 
-            let importVcard = await page.findByXpath('//input[@title="Import vCard…"]')
+            let importVcard = await page.findByXpath(selectors.importContactsMenu)
             importVcard.sendKeys(process.cwd() + '/contacts.vcf')
 
             await new Promise(resolve => setTimeout(resolve, 10000));
@@ -45,12 +45,12 @@ export default {
         
         try{
             
-            let contactInputElement = await page.findByXpath('//*[@id="sc1686"]/div[1]/input')
+            let contactInputElement = await page.findByXpath(selectors.contactSearch)
 
             await contactInputElement.clear()
             await contactInputElement.sendKeys(message['Name'])
             await new Promise(resolve => setTimeout(resolve, 1000));
-            let exists = await page.findByXpath('//*[@id="sc1361"]', 1000)
+            let exists = await page.findByXpath(selectors.contactCard, 1000)
             if(exists)
                 return true
             else

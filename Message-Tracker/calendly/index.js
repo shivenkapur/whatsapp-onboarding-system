@@ -1,25 +1,26 @@
 import getCalendlyData from './getCalendlyData.js'
+import cellData from './cellData.js'
 export default async function start(staffTrackerCaregivers){
     let calendlyCaregivers = await getCalendlyData();
 
 
     let caregiversToSendMessage = [];
     for(let caregiverIndex = 1; caregiverIndex < calendlyCaregivers.length;caregiverIndex++){
-        let caregiver = calendlyCaregivers[caregiverIndex];
+        let calendlyCaregiver = calendlyCaregivers[caregiverIndex];
         let scheduledData = new Date(caregiver['Scheduled Date']);
         scheduledData.setHours(0,0,0,0);
         let today = new Date();
         today.setHours(0,0,0,0);
         
-        let staffNumber = caregiver['Staff']
+        let staffNumber = calendlyCaregiver['Staff']
         if(scheduledData.getTime() >= today.getTime() && 
             staffTrackerCaregivers[staffNumber] != undefined){
 
             let staffTrackerCaregiver = staffTrackerCaregivers[staffNumber]
 
-            if(hasData(staffNumber) && 
-                hasData(caregiver['Potential CG']) &&
-                hasNoData(caregiver['Sent to MQ']) && 
+            if(cellData.hasData(staffNumber) && 
+            cellData.hasData(calendlyCaregiver['Potential CG']) &&
+            cellData.hasNoData(calendlyCaregiver['Sent to MQ']) && 
                 staffTrackerCaregiver['Status'] == 'Not Onboarded')
             
             {  
@@ -31,16 +32,4 @@ export default async function start(staffTrackerCaregivers){
     }
 
     return caregiversToSendMessage;
-}
-
-function hasData(dataPoint){
-    if(dataPoint != '' && dataPoint != 'undefined' && dataPoint != undefined && dataPoint != '#N/A')
-        return true
-    return false
-}
-
-function hasNoData(dataPoint){
-    if(dataPoint == '' || dataPoint == 'undefined' || dataPoint == undefined || dataPoint == '#N/A')
-        return true
-    return false
 }
