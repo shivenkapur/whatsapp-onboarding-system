@@ -1,6 +1,6 @@
 import calendly from './calendly/index.js'
 import staffTracker from './staffTracker/index.js'
-import getCaregiversAfterDate from './utils/getCaregiversAfterDate.js'
+import getCaregivers from './utils/getCaregiversAfterDate.js'
 import messageTracker from './messageTracker/index.js'
 import getMessagesfromCaregivers from './utils/getMessagesfromCaregivers.js'
 import updateSheets from './utils/updateSheets.js'
@@ -11,7 +11,7 @@ async function start(){
     let staffTrackerCaregivers = await staffTracker();
 
     
-    let caregiversRegisteredThisYear = await getCaregiversAfterDate(staffTrackerCaregivers, caregiversAfterDate)
+    let caregiversRegisteredThisYear = await getCaregivers.getCaregiversBetweenID(staffTrackerCaregivers, 1800, 2000)
 
     console.log('Getting Calendly Data ...')
     let videoCallReminderMessage = await calendly(caregiversRegisteredThisYear);

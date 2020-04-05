@@ -26,8 +26,6 @@ async function start(){
 
             if(caregiverstoAdd.length > 0)
             {
-                await updateMessageQueue(caregiverstoAdd)
-
                 await contacts.getvCards(caregiverstoAdd)
                 await contacts.importContacts(page);
             }
@@ -42,7 +40,7 @@ async function start(){
         }
         page.driver.quit()
     }
-    await new Promise(resolve => setTimeout(resolve, 3000));
+    await new Promise(resolve => setTimeout(resolve, 15000));
     
     process.exit()
 }
@@ -55,6 +53,7 @@ function messageQueueNotAdded(messageQueueData){
     for(let messageIndex in messageQueueData){
         let message = messageQueueData[messageIndex]
         if(!message['Added to iCloud'].includes('Added')){
+            message['Row'] = (parseInt(messageIndex) + 1).toString()
             caregiverstoAdd.push(message)
         }
     }
@@ -75,12 +74,15 @@ async function getCaregiversToAdd(page, caregivers){
                     if(!exists)
                     {
                         caregiverstoAdd.push(message)
-                        message['Row'] = (parseInt(messageIndex) + 1).toString()
                     }
+                    
                     await new Promise(resolve => setTimeout(resolve, 1000));
-                } catch(error){console.log('HIII getCaregiversToAdd')}
+                } catch(error){
+                    console.log(error);console.log('HIII getCaregiversToAdd')}
             }
         }
+
+        await updateMessageQueue(caregivers)
     }
     catch(error){console.log('HIII getCaregiversToAdd')}
     

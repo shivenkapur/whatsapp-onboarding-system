@@ -11,6 +11,7 @@ import convertSheetDatatoDict from './utils/convertSheetDatatoDict.js';
 
 let INTERNAL_TOKEN = '700o2k0hnl7fvwv8kb0o6p';
 let date = new Date();
+let MAX_MESSAGE_LIMIT = 30;
 export default async function start (test = false){
     let messageQueueData = await googleSheets.getGoogleSheetData(INTERNAL_TOKEN)
     
@@ -25,7 +26,7 @@ export default async function start (test = false){
     let messagesSent = []
     let data = []
     try{
-        for(let messageIndex in messages){
+        for(let messageIndex = 0; messageIndex < MAX_MESSAGE_LIMIT; messageIndex++){
             let message = messages[messageIndex];
     
             let newMessage = await clickNewMessageButton(page)
@@ -51,13 +52,13 @@ export default async function start (test = false){
                     data.push(data_row);
                 }
         }
-        googleSheets.batchUpdateGoogleSheet(INTERNAL_TOKEN, data);
+        await googleSheets.batchUpdateGoogleSheet(INTERNAL_TOKEN, data);
         
     } catch(error){
         console.log(error);
-        googleSheets.batchUpdateGoogleSheet(INTERNAL_TOKEN, data);
+        await googleSheets.batchUpdateGoogleSheet(INTERNAL_TOKEN, data);
     }
-    
+    await new Promise(resolve => setTimeout(resolve, 3000));
     process.exit()
 }
 
