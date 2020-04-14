@@ -11,7 +11,7 @@ import convertSheetDatatoDict from './utils/convertSheetDatatoDict.js';
 
 let INTERNAL_TOKEN = '700o2k0hnl7fvwv8kb0o6p';
 let date = new Date();
-let MAX_MESSAGE_LIMIT = 30;
+let MAX_MESSAGE_LIMIT = 1500;
 export default async function start (test = false){
     let messageQueueData = await googleSheets.getGoogleSheetData(INTERNAL_TOKEN)
     
@@ -23,15 +23,14 @@ export default async function start (test = false){
 
     let contactSearch = await signIntoWhatsapp(page);
 
-    let messagesSent = []
     let data = []
     try{
-        for(let messageIndex = 0; messageIndex < MAX_MESSAGE_LIMIT; messageIndex++){
+        for(let messageIndex = 0; messageIndex < MAX_MESSAGE_LIMIT && messageIndex < messages.length; messageIndex++){
             let message = messages[messageIndex];
     
             let newMessage = await clickNewMessageButton(page)
     
-            let contactName = message['Name']
+            let contactName = message['Phone']
             let contactSearched = await searchForContact(page, contactName) // true or false
             let contactClicked = await selectSearchedContact(page)
     
@@ -49,6 +48,11 @@ export default async function start (test = false){
             
                 if(messageSent){
                     let data_row = {range: 'Message Queue!E' + message['Row'], values: [[ date ]]};
+                    
+                    data.push(data_row);
+
+                    data_row = {range: 'Message Queue!F' + message['Row'], values: [[ (parseInt(message['Sent Number']) + 1).toString() ]]};
+
                     data.push(data_row);
                 }
         }
@@ -72,7 +76,7 @@ async function messagesToSend(messageQueueData){
         let today = new Date();
         let timeDifference = today - lastSentDate;
 
-        if(message['Sent'] == '' || (timeDifference >= 1000*3600*24*3 && message['Sent Number'] < 3)){
+        if((message['Sent'] == '' && message['Sent Number'] < 3) || (timeDifference >= 1000*3600*24*3 && message['Sent Number'] < 3 && message['Message Type'] != 'nextSteps')){
             messages.push(message);
         }
     }
