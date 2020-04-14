@@ -4,7 +4,6 @@
   "description": "",
   "main": "api.js",
   "dependencies": {
-    "@babel/runtime": "^7.9.2",
     "google-spreadsheet": "^3.0.10",
     "googleapis": "^39.2.0",
     "request": "^2.88.2"
@@ -14,8 +13,7 @@
     "test-getData": "mocha --require @babel/register ./Test/TestGetData.spec.js",
     "test-appendData": "mocha --require @babel/register ./Test/TestAppendData/TestAppendData.spec.js",
     "test-batchUpdate": "mocha --require @babel/register ./Test/TestBatchUpdate/TestBatchUpdate.spec.js",
-    "production": "npx babel --presets @babel/env . -d prod --ignore node_modules,Test,prod"
-    
+    "production": "npx babel --presets @babel/env . -d prod"
   },
   "author": "",
   "license": "ISC",
@@ -23,10 +21,10 @@
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.6",
     "@babel/node": "^7.0.0",
-    "@babel/plugin-transform-runtime": "^7.9.0",
     "@babel/preset-env": "^7.1.6",
     "@babel/register": "^7.9.0",
     "chai": "^4.2.0",
-    "mocha": "^7.1.1"
+    "mocha": "^7.1.1",
+    "nodemon": "^1.18.6"
   }
 }
