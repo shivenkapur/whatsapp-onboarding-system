@@ -9,7 +9,7 @@ const INTERNAL_TOKEN = '700o2k0hnl7fvwv8kb0o6p';
 async function start(){
     let messageQueueData = await googleSheets.getGoogleSheetData(INTERNAL_TOKEN)
     
-    let columns = {'Old #' : -1, 'Name': -1, 'Message Type': -1, 'Phone': -1, 'Sent': -1,'Sent Number': -1, 'Added to iCloud': -1}
+    let columns = {'Old #' : -1, 'Name': -1, 'Message Type': -1, 'Phone': -1, 'Sent': -1, 'Added to iCloud': -1}
     messageQueueData = await convertSheetDatatoDict(messageQueueData, columns);
 
     let caregiverstoAdd = messageQueueNotAdded(messageQueueData);
