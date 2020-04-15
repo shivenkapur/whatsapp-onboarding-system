@@ -73,7 +73,7 @@ async function messagesToSend(messageQueueData){
         let today = new Date();
         let timeDifference = today - lastSentDate;
 
-        if(message['Sent'] == '' || (timeDifference >= 1000*3600*24*3 && message['Sent Number'] < 3)){
+        if((message['Sent Number'] < 3) && (message['Sent'] == '' || timeDifference >= 1000*3600*24*3)){
             messages.push(message);
         }
     }
