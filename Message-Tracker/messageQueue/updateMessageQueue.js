@@ -14,7 +14,7 @@ export default async function updateMessageQueue(caregivers, date) {
     
     let batchUpdate = []
     let append = []
-    console.log(caregivers)
+
     for (let caregiverIndex in caregivers)
     {
         let caregiver = caregivers[caregiverIndex];
@@ -23,14 +23,11 @@ export default async function updateMessageQueue(caregivers, date) {
         {
             let messageQueueRow = messageQueueData[messageQueueIndex];
 
-            
             if(messageQueueRow['Old #'] == caregiver['Old #']){
-                
                 caregiver['Row'] = (parseInt(messageQueueIndex) + 1).toString()
                 caregiver['Message Type from Sheet'] = messageQueueRow['Message Type']
                 caregiver['Sent Number'] = messageQueueRow['Sent Number']
                 batchUpdate.push(caregiver)
-                
                 found = true;
             }
         }
@@ -50,20 +47,17 @@ async function batchUpdateSheet(batchUpdate, date){
     for(let caregiverMesageIndex in batchUpdate){
         let caregiverMessage = batchUpdate[caregiverMesageIndex];
 
-        
+        sheetData.push({range: 'Message Queue!E' + caregiverMessage['Row'], values: [[ '' ]]})
 
         let sentNumber = caregiverMessage['Sent Number'];
         
         if(cellData.hasNoData(caregiverMessage['Sent Number']))
-            sentNumber = 0;
+            sentNumber = 1;
         else if(caregiverMessage['messageType'] != caregiverMessage['Message Type from Sheet'])
-            sentNumber = 0;
-
-        let today = new Date();
-        if((today - new Date(caregiverMessage['Sent']) <  100*3600*24*3) && caregiverMessage['messageType'] == caregiverMessage['Message Type from Sheet'])
-            continue;
-
-        sheetData.push({range: 'Message Queue!E' + caregiverMessage['Row'], values: [[ '' ]]})
+            sentNumber = 1;
+        else
+            sentNumber = (parseInt(caregiverMessage['Sent Number']) + 1).toString()
+        
         sheetData.push({range: 'Message Queue!C' + caregiverMessage['Row'], values: [[ caregiverMessage['messageType'] ]]})
         sheetData.push({range: 'Message Queue!F' + caregiverMessage['Row'], values: [[ sentNumber ]]})
     }

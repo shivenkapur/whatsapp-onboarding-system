@@ -30,18 +30,6 @@ export default {
         }
         return return_caregivers
 
-    },
-
-    getCaregiversDict: function getCaregiversDict(caregivers){
-        let return_caregivers = {}
-        
-        for(let caregiverIndex in caregivers)
-        {
-            let caregiver = caregivers[caregiverIndex]
-            return_caregivers[caregiver['Old #']] = caregiver;
-        }
-        return return_caregivers
-
     }
 
     
