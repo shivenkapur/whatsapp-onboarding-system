@@ -41,7 +41,7 @@ async function caregiverstoSendMessages(calendlyCaregivers, staffTrackerCaregive
                     caregivers.push(staffTrackerCaregiver);
                 } else if(cellData.hasNoData(messageTrackerData[calendlyCaregiver['Staff']]['Sent 1 hour Before Video Call Reminder Message'])
                         && (scheduledTime - today) <= 2*60*60*1000){
-                    staffTrackerCaregiver['Message Type'] = '10MinutesVideoCallReminder';
+                    staffTrackerCaregiver['Message Type'] = '1HourVideoCallReminder';
                     caregivers.push(staffTrackerCaregiver);
                 }
             }
