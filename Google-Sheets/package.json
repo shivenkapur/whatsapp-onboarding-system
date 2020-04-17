@@ -15,7 +15,6 @@
     "test-appendData": "mocha --require @babel/register ./Test/TestAppendData/TestAppendData.spec.js",
     "test-batchUpdate": "mocha --require @babel/register ./Test/TestBatchUpdate/TestBatchUpdate.spec.js",
     "production": "npx babel --presets @babel/env . -d prod --ignore node_modules,Test,prod"
-    
   },
   "author": "",
   "license": "ISC",
