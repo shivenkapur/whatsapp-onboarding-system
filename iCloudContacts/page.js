@@ -52,6 +52,17 @@ var Page = function() {
         }
     }
 
+    this.findByCssSelector = async function(cssSelector, wait = 15000){
+        try{
+            await this.driver.wait(until.elementLocated(By.css(cssSelector)), wait, 'Looking for element')
+            let element = await this.driver.findElement(By.css(cssSelector));
+            return element
+        } catch(error){
+            console.log(error);
+            return false;
+        }
+    }
+
     // fill input web elements
     this.write = async function (el, txt) {
         return await el.sendKeys(txt);

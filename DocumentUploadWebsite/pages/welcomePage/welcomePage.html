@@ -1,0 +1,56 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Evercare Caregivers Secure Document Upload Website</title>
+    <meta name="description" content="Evercare">
+    <meta name="author" content="Everacre HK Limited">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="welcomePage.css">
+    <link rel="stylesheet" href="../../static/css/shared-styles.css">
+
+</head>
+
+<body>
+    <nav></nav>
+
+    <div class = "container">
+        <div class = "header">
+            EVERCARE DOCUMENT UPLOAD
+        </div>
+
+        <div class = "welcome-message">
+            Hi, Welcome to Evercare's Document Upload System.
+        </div>
+            
+
+        <div class = "container-radio-buttons">
+            <div class = "header"> Select a caregiver type to see what certifications are required. </div>
+            
+            <div class = "radio-buttons">
+                <div>
+                    <input type="radio" id="Nurse" name="caregiver-type" value="Nurse">
+                    <label for="Nurse">Nurse</label>
+                </div>
+                
+                <div>
+                    <input type="radio" id="HCW" name="caregiver-type" value="Health Care Worker">
+                    <label for="HCW">Health Care Worker</label>
+                </div>
+            </div>
+        </div>
+
+        <button class = "button" onClick = "goToUploadingPage()"> NEXT </button>
+            
+    </div>
+    <script>
+        function goToUploadingPage(){
+            location.href = "../uploadingPage/uploadingPage.html?";
+        }
+    </script>
+</body>
+</html>

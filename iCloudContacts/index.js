@@ -20,7 +20,7 @@ async function start(){
             await page.visit('https://www.icloud.com/contacts');
             await signIn(page)
             await page.switchToFrame("contacts")
-            let el = await page.findByXpath(selectors.contactList, 50000)
+            let el = await page.findByCssSelector(selectors.contactList, 50000)
             console.log('1', el)
 
             caregiverstoAdd = await getCaregiversToAdd(page, caregiverstoAdd);

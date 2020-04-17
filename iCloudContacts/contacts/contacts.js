@@ -4,10 +4,10 @@ import selectors from '../configuration/selectors.js'
 export default {
     importContacts : async function getContacts (page) {
         try{
-            let settingsElement = await page.findByXpath(selectors.importContactsMenu)
+            let settingsElement = await page.findByCssSelector(selectors.importContactsMenu)
             await settingsElement.click()
 
-            let importVcard = await page.findByXpath(selectors.importContactsMenu)
+            let importVcard = await page.findByCssSelector(selectors.importContactsMenu)
             importVcard.sendKeys(process.cwd() + '/contacts.vcf')
 
             await new Promise(resolve => setTimeout(resolve, 10000));
@@ -45,11 +45,11 @@ export default {
         
         try{
             
-            let contactInputElement = await page.findByXpath(selectors.contactSearch)
+            let contactInputElement = await page.findByCssSelector(selectors.contactSearch)
             await contactInputElement.clear()
             await contactInputElement.sendKeys(message['Name'])
             await new Promise(resolve => setTimeout(resolve, 1000));
-            let exists = await page.findByXpath(selectors.contactSelected, 1000)
+            let exists = await page.findByCssSelector(selectors.contactSelected, 1000)
 
             console.log(exists)
             if(exists)

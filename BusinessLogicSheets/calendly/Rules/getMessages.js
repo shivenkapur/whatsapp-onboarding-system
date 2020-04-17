@@ -18,24 +18,32 @@ async function caregiverstoSendMessages(calendlyCaregivers, staffTrackerCaregive
     for(let caregiverIndex in calendlyCaregivers){
         let calendlyCaregiver = calendlyCaregivers[caregiverIndex];
 
-        let scheduledData = new Date(calendlyCaregiver['Scheduled Date']); scheduledData.setHours(0,0,0,0);
+        let scheduledTime = new Date(calendlyCaregiver['Scheduled Date'] + ' '
+        + calendlyCaregiver['Scheduled Time']); 
 
-        let today = new Date(); today.setHours(0,0,0,0);
+        let today = new Date(); 
         
         let staffNumber = calendlyCaregiver['Staff'];
 
-        if(scheduledData.getTime() >= today.getTime() && 
+        if(scheduledTime.getTime() >= today.getTime() && 
             staffTrackerCaregivers[staffNumber] != undefined){
 
             let staffTrackerCaregiver = staffTrackerCaregivers[staffNumber]
 
+            staffTrackerCaregiver['Row'] = row.toString();
             if(cellData.hasData(staffNumber) && 
-            cellData.hasData(calendlyCaregiver['Potential CG']) &&
-            cellData.hasNoData(messageTrackerData[calendlyCaregiver['Staff']]['Sent Video Call Reminder Message to MQ']) && 
+            cellData.hasData(calendlyCaregiver['Potential CG']) && 
                 staffTrackerCaregiver['Status'] == 'Not Onboarded')
             {  
-                staffTrackerCaregiver['Row'] = row.toString()
-                caregivers.push(staffTrackerCaregiver)
+                if(cellData.hasNoData(messageTrackerData[calendlyCaregiver['Staff']]['Sent Video Call Reminder Message to MQ'])){
+                    
+                    staffTrackerCaregiver['Message Type'] = 'videoCallReminder';
+                    caregivers.push(staffTrackerCaregiver);
+                } else if(cellData.hasNoData(messageTrackerData[calendlyCaregiver['Staff']]['Sent 1 hour Before Video Call Reminder Message'])
+                        && (scheduledTime - today) <= 2*60*60*1000){
+                    staffTrackerCaregiver['Message Type'] = '10MinutesVideoCallReminder';
+                    caregivers.push(staffTrackerCaregiver);
+                }
             }
         }
 
@@ -54,7 +62,7 @@ async function getMessagesFromCaregivers(staffTrackerCaregivers){
         let searchName = getSearchName(staffTrackerCaregiver);
         
         let messageSender = {'Old #': staffTrackerCaregiver['Old #'], 
-        'searchName': searchName, 'messageType': 'videoCallReminder', 'Phone': staffTrackerCaregiver['Phone'] }
+        'searchName': searchName, 'messageType': staffTrackerCaregiver['Message Type'], 'Phone': staffTrackerCaregiver['Phone'] }
 
         messages.push(messageSender);
     }
