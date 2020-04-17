@@ -52,7 +52,7 @@ function _updateMessageTracker() {
                   range: global.test + 'Main!F' + rowNumber,
                   values: [[date]]
                 });
-              } else if (message['messageType'] == '10MinutesVideoCallReminder') {
+              } else if (message['messageType'] == '1HourVideoCallReminder') {
                 sheetData.push({
                   range: global.test + 'Main!G' + rowNumber,
                   values: [[date]]
