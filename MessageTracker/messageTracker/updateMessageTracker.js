@@ -17,7 +17,11 @@ export default async function updateMessageTracker(messages, date){
             sheetData.push({range: global.test + 'Main!E' + rowNumber, values: [[ date ]]})
         } else if(message['messageType'] == 'nextSteps'){
             sheetData.push({range: global.test + 'Main!F' + rowNumber, values: [[ date ]]})
+        } else if(message['messageType'] == '10MinutesVideoCallReminder'){
+            sheetData.push({range: global.test + 'Main!G' + rowNumber, values: [[ date ]]})
         }
+
+        
     }
 
 
