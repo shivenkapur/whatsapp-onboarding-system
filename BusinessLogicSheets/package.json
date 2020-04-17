@@ -8,14 +8,13 @@
     "test": "mocha --require @babel/register --recursive",
     "test-staffTracker": "mocha --require @babel/register ./Test/TestStaffTracker/TestStaffTracker.spec.js",
     "test-calendly": "mocha --require @babel/register ./Test/TestCalendly/TestCalendly.spec.js",
-    "test-3": "mocha --require @babel/register ./Test/TestUpdateMessageQueue/TestUpdateMessageQueue.spec.js"
+    "test-updateMessageQueue": "mocha --require @babel/register ./Test/TestUpdateMessageQueue/TestUpdateMessageQueue.spec.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "messagetracker": "file:../MessageTracker/prod",
-    "googlesheets": "file:../Google-Sheets/prod",
-    "messagetracker": "file:../MessageTracker/prod"
+    "googlesheets": "file:../Google-Sheets/prod"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",

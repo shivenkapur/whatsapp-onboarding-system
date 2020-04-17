@@ -55,9 +55,10 @@ function _updateMessageTracker() {
               }
             }
 
-            _googlesheets["default"].batchUpdateGoogleSheet(INTERNAL_TOKEN, sheetData);
+            _context.next = 4;
+            return _googlesheets["default"].batchUpdateGoogleSheet(INTERNAL_TOKEN, sheetData);
 
-          case 3:
+          case 4:
           case "end":
             return _context.stop();
         }

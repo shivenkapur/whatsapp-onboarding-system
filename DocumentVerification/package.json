@@ -19,8 +19,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/vision": "^1.11.0",
     "appjs-darwin": "0.0.19",
     "autobuild": "0.0.2",
-    "opencv4nodejs": "^5.5.0"
+    "grpc": "^1.24.2",
+    "node-tesseract": "^0.2.7",
+    "node-tesseract-ocr": "^1.0.0",
+    "opencv4nodejs": "^5.5.0",
+    "protobufjs": "^6.8.9"
   }
 }

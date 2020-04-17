@@ -32,7 +32,7 @@ function _updateMessageQueue() {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return _googlesheets["default"].getGoogleSheetData(INTERNAL_TOKEN, "", test = global.test);
+            return _googlesheets["default"].getGoogleSheetData(INTERNAL_TOKEN, "", global.test);
 
           case 2:
             messageQueueData = _context.sent;
@@ -73,10 +73,17 @@ function _updateMessageQueue() {
               }
             }
 
-            batchUpdateSheet(batchUpdate);
-            appendSheet(append);
+            _context.next = 12;
+            return batchUpdateSheet(batchUpdate);
 
           case 12:
+            _context.next = 14;
+            return appendSheet(append);
+
+          case 14:
+            return _context.abrupt("return", [batchUpdate, append]);
+
+          case 15:
           case "end":
             return _context.stop();
         }
@@ -92,7 +99,7 @@ function batchUpdateSheet(_x3) {
 
 function _batchUpdateSheet() {
   _batchUpdateSheet = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(batchUpdate) {
-    var sheetData, mesageIndex, message, sentNumber, update;
+    var sheetData, mesageIndex, message, reminderNumber, update;
     return _regenerator["default"].wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
@@ -101,9 +108,9 @@ function _batchUpdateSheet() {
 
             for (mesageIndex in batchUpdate) {
               message = batchUpdate[mesageIndex];
-              sentNumber = message['Reminder Number'];
+              reminderNumber = message['Reminder Number'];
               update = true;
-              if (_cellData["default"].hasNoData(message['Reminder Number'])) sentNumber = 1;else if (message['messageType'] != message['Message Type from MQ']) sentNumber = 1;else if (parseInt(message['Reminder Number']) < MAX_REMINDERS) sentNumber = (parseInt(message['Reminder Number']) + 1).toString();else update = false;
+              if (_cellData["default"].hasNoData(message['Reminder Number'])) reminderNumber = 1;else if (message['messageType'] != message['Message Type from MQ']) reminderNumber = 1;else if (parseInt(message['Reminder Number']) < MAX_REMINDERS) reminderNumber = (parseInt(message['Reminder Number']) + 1).toString();else update = false;
 
               if (update) {
                 sheetData.push({
@@ -116,14 +123,15 @@ function _batchUpdateSheet() {
                 });
                 sheetData.push({
                   range: global.test + 'Message Queue!F' + message['Row'],
-                  values: [[sentNumber]]
+                  values: [[reminderNumber]]
                 });
               }
             }
 
-            _googlesheets["default"].batchUpdateGoogleSheet(INTERNAL_TOKEN, sheetData);
+            _context2.next = 4;
+            return _googlesheets["default"].batchUpdateGoogleSheet(INTERNAL_TOKEN, sheetData);
 
-          case 3:
+          case 4:
           case "end":
             return _context2.stop();
         }
@@ -145,15 +153,19 @@ function _appendSheet() {
         switch (_context3.prev = _context3.next) {
           case 0:
             sheetData = [];
+            console.log(append);
 
             for (mesageIndex in append) {
+              console.log(mesageIndex);
               message = append[mesageIndex];
               sheetData.push([message['Old #'], message['searchName'], message['messageType'], message['Phone'], '', '1']);
             }
 
-            _googlesheets["default"].appendGoogleSheet(INTERNAL_TOKEN, sheetData, test = global.test);
+            console.log(sheetData);
+            _context3.next = 6;
+            return _googlesheets["default"].appendGoogleSheet(INTERNAL_TOKEN, sheetData, global.test);
 
-          case 3:
+          case 6:
           case "end":
             return _context3.stop();
         }

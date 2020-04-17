@@ -8,7 +8,8 @@ describe('Get Messages from Staff Tracker', async function() {
     it('get messages', async function() {
         
         global.test = 'Test_';
-        await updateMessageQueue()
+        let messages = await updateMessageQueue();
+        console.log(messages);
 
     });
 });

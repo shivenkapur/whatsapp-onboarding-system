@@ -9,7 +9,10 @@ export default async function messageTrackerValidation(messageType, messageTrack
             return false;
         case 'scheduleInterview':
             
-            if(cellData.hasNoData(messageTrackerCaregiver['Sent Schedule Interview Message to MQ'])){
+            if(cellData.hasData(messageTrackerCaregiver['Sent Video Call Reminder Message to MQ'])){
+                return false;
+            }
+            else if(cellData.hasNoData(messageTrackerCaregiver['Sent Schedule Interview Message to MQ'])){
                 return true;
             }
             else{

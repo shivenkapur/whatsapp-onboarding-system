@@ -40,6 +40,7 @@ export default {
         resource: resource,
         auth: oAuthToken
       });
+
       return result
     }
   },

@@ -109,12 +109,13 @@ var _default = {
               };
 
               if (!oAuthToken) {
-                _context2.next = 14;
+                _context2.next = 15;
                 break;
               }
 
               sheets = google.sheets('v4');
-              _context2.next = 12;
+              console.log('HIII', rows);
+              _context2.next = 13;
               return sheets.spreadsheets.values.append({
                 spreadsheetId: sheetDetails.SHEET_ID,
                 range: test + sheetDetails.SHEET_NAME,
@@ -123,11 +124,11 @@ var _default = {
                 auth: oAuthToken
               });
 
-            case 12:
+            case 13:
               result = _context2.sent;
               return _context2.abrupt("return", result);
 
-            case 14:
+            case 15:
             case "end":
               return _context2.stop();
           }

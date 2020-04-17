@@ -14,7 +14,7 @@ let caregiversAfterDate = new Date(2020, 0, 1) //Year, Month, date
 */
 export default async function start(){
 
-    global.test = ""
+    
     let date = new Date();
     
     let messageTrackerData = await messagetracker.getMessageTrackerData('Old #');
@@ -32,10 +32,10 @@ export default async function start(){
     await messagetracker.updateMessageTracker(staffTrackerMessages, date);
     await messagetracker.updateMessageTracker(calendlyMessages, date);
 
-
-    console.log(staffTrackerMessages.concat(calendlyMessages))
-    await messagetracker.updateMessageQueue(staffTrackerMessages.concat(calendlyMessages), messagePriority);
+    let messages = staffTrackerMessages.concat(calendlyMessages)
+    let ret = await messagetracker.updateMessageQueue(messages, messagePriority);
+    return ret
     
 }
-
+global.test = ""
 start()

@@ -46,11 +46,12 @@ export default {
         try{
             
             let contactInputElement = await page.findByXpath(selectors.contactSearch)
-
             await contactInputElement.clear()
             await contactInputElement.sendKeys(message['Name'])
             await new Promise(resolve => setTimeout(resolve, 1000));
-            let exists = await page.findByXpath(selectors.contactCard, 1000)
+            let exists = await page.findByXpath(selectors.contactSelected, 1000)
+
+            console.log(exists)
             if(exists)
                 return true
             else

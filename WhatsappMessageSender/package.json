@@ -8,11 +8,14 @@
     "puppeteer": "^2.1.1",
     "puppeteer-extra": "^3.1.9",
     "puppeteer-extra-plugin-stealth": "^2.4.9",
-    "websocket": "^1.0.31"
+    "websocket": "^1.0.31",
+    "messagetracker": "file:../MessageTracker/prod",
+    "googlesheets": "file:../Google-Sheets/prod"
   },
   "scripts": {
     "dev": "npx babel-node --presets @babel/env index.js",
-    "test": "mocha --require @babel/register"
+    "test": "mocha --require @babel/register",
+    "test-sendMessages": "mocha --require @babel/register ./Test/TestSendMessagesFromMessageQueue/TestSendMessages.spec.js"
   },
   "author": "",
   "license": "ISC",

@@ -1,14 +1,14 @@
 var assert = require('chai').assert;
 
 //internal_files
-import openWhatsapp from '../whatsappFunctions/openWhatsapp/openWhatsapp.js'
-import signIntoWhatsapp from '../whatsappFunctions/signIntoWhatsapp/signIntoWhatsapp.js'
-import searchForContact from '../whatsappFunctions/searchForContact/searchForContact.js'
-import selectSearchedContact from '../whatsappFunctions/selectSearchedContact/selectSearchedContact.js'
-import sendMessage from '../whatsappFunctions/sendMessage/sendMessage.js'
-import getContactViaWaMe from '../whatsappFunctions/getContactViaWaMe/getContactViaWaMe.js'
+import openWhatsapp from '../../whatsappFunctions/openWhatsapp/openWhatsapp.js'
+import signIntoWhatsapp from '../../whatsappFunctions/signIntoWhatsapp/signIntoWhatsapp.js'
+import searchForContact from '../../whatsappFunctions/searchForContact/searchForContact.js'
+import selectSearchedContact from '../../whatsappFunctions/selectSearchedContact/selectSearchedContact.js'
+import sendMessage from '../../whatsappFunctions/sendMessage/sendMessage.js'
+import getContactViaWaMe from '../../whatsappFunctions/getContactViaWaMe/getContactViaWaMe.js'
 
-import clickNewMessageButton from '../whatsappFunctions/clickNewMessageButton/clickNewMessageButton.js'
+import clickNewMessageButton from '../../whatsappFunctions/clickNewMessageButton/clickNewMessageButton.js'
 
 import TestMessages from './TestData/TestMessages.js'
 

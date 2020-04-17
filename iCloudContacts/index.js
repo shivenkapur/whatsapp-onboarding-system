@@ -20,10 +20,11 @@ async function start(){
             await page.visit('https://www.icloud.com/contacts');
             await signIn(page)
             await page.switchToFrame("contacts")
-            await page.findByXpath(selectors.contactList, 50000)
-            
+            let el = await page.findByXpath(selectors.contactList, 50000)
+            console.log('1', el)
+
             caregiverstoAdd = await getCaregiversToAdd(page, caregiverstoAdd);
-            console.log(caregiverstoAdd)
+            
 
             if(caregiverstoAdd.length > 0)
             {
@@ -41,7 +42,7 @@ async function start(){
         }
         page.driver.quit()
     }
-    await new Promise(resolve => setTimeout(resolve, 15000));
+    await new Promise(resolve => setTimeout(resolve, 5000));
     
     process.exit()
 }

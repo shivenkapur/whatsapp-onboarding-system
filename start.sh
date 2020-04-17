@@ -1,0 +1,1 @@
+cd "/Users/anujkapur/Documents/GitHub/Whatsapp-Automator-2.0/BusinessLogicSheets" && npm run dev && cd "/Users/anujkapur/Documents/GitHub/Whatsapp-Automator-2.0/iCloudContacts"  && npm run dev && cd "/Users/anujkapur/Documents/GitHub/Whatsapp-Automator-2.0/WhatsappMessageSender" && npm run dev

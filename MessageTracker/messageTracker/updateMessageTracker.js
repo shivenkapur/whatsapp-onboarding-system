@@ -21,6 +21,6 @@ export default async function updateMessageTracker(messages, date){
     }
 
 
-    googleSheets.batchUpdateGoogleSheet(INTERNAL_TOKEN, sheetData)
+    await googleSheets.batchUpdateGoogleSheet(INTERNAL_TOKEN, sheetData)
 
 }

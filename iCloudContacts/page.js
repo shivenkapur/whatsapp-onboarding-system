@@ -46,7 +46,10 @@ var Page = function() {
             await this.driver.wait(until.elementLocated(By.xpath(xpath)), wait, 'Looking for element')
             let element = await this.driver.findElement(By.xpath(xpath));
             return element
-        } catch(error){return false}
+        } catch(error){
+            console.log(error);
+            return false;
+        }
     }
 
     // fill input web elements

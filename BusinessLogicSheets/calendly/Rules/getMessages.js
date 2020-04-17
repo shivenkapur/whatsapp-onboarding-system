@@ -41,7 +41,7 @@ async function caregiverstoSendMessages(calendlyCaregivers, staffTrackerCaregive
 
         row++;
     }
-
+    console.log(caregivers)
     return caregivers;
 }
 

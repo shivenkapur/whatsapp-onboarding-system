@@ -30,7 +30,27 @@ export default {
         }
         return return_caregivers
 
+    },
+
+    getCaregiversDict: function getCaregiversDict(caregivers){
+        let return_caregivers = {}
+        
+        for(let caregiverIndex in caregivers)
+        {
+            let caregiver = caregivers[caregiverIndex]
+            return_caregivers[caregiver['Old #']] = caregiver;
+        }
+        return return_caregivers
+
     }
 
     
 }
+
+/* 
+function getElementByXpath(document, path) {
+  return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+}
+
+getElementByXpath(window.frames[0].document,'/html/body/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]')
+*/
