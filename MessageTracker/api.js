@@ -1,5 +1,5 @@
-import messageTracker from './messageTracker/index.js'
-import messageQueue from './messageQueue/index.js'
+import messageTracker from "./messageTracker/index.js";
+import messageQueue from "./messageQueue/index.js";
 
 /*
     Message Format:
@@ -9,11 +9,8 @@ import messageQueue from './messageQueue/index.js'
         'Phone': caregiverMessage['Phone']
     }
 */
-export default{
-    
-    updateMessageTracker: messageTracker.updateMessageTracker,
-    getMessageTrackerData: messageTracker.getMessageTrackerData,
-    updateMessageQueue: messageQueue.updateMessageQueue,
-    
-
-}
+export default {
+  updateMessageTracker: messageTracker.updateMessageTracker,
+  getMessageTrackerData: messageTracker.getMessageTrackerData,
+  updateMessageQueue: messageQueue.updateMessageQueue,
+};

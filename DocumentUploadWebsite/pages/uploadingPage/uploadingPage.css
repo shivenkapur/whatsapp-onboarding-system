@@ -1,29 +1,26 @@
-.document-upload-form{
-    padding: 50px;
-    border: 1px dashed black;
-    border-radius: 10px;
+.document-upload-form {
+  padding: 50px;
+  border: 1px dashed black;
+  border-radius: 10px;
 }
 
-.document-details-header{
-    color: rgba(1,1,1,0.8);
-    font-weight: bolder;
+.document-details-header {
+  color: rgba(1, 1, 1, 0.8);
+  font-weight: bolder;
 }
 
-.document-details{
-    font-size: 17px;
-
+.document-details {
+  font-size: 17px;
 }
 
-.document-disclaimer{
-    margin: 15px 20px;
+.document-disclaimer {
+  margin: 15px 20px;
 }
 
-label{
-    margin-left: 20px;
-    margin-bottom: 2px;
-
+label {
+  margin-left: 20px;
+  margin-bottom: 2px;
 }
-.lock{
-    color: #328f8d;
-    
+.lock {
+  color: #328f8d;
 }

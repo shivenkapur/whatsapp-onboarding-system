@@ -1,5 +1,5 @@
-import updateMessageQueue from './updateMessageQueue.js';
+import updateMessageQueue from "./updateMessageQueue.js";
 
 export default {
-    updateMessageQueue: updateMessageQueue
-}
+  updateMessageQueue: updateMessageQueue,
+};

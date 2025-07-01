@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "messagetracker": "file:../MessageTracker/prod",
-    "googlesheets": "file:../Google-Sheets/prod"
+    "googlesheets": "file:../GoogleSheets/prod"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",

@@ -1,74 +1,101 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="en">
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
 
     <title>Evercare Caregivers Secure Document Upload Website</title>
-    <meta name="description" content="Evercare">
-    <meta name="author" content="Everacre HK Limited">
+    <meta name="description" content="Evercare" />
+    <meta name="author" content="Everacre HK Limited" />
 
-    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-</head>
-
-<body>
-
+  <body>
     <nav></nav>
 
-    <div class = "container">
-        <div class = "header">
-            EVERCARE DOCUMENT UPLOAD
+    <div class="container">
+      <div class="header">EVERCARE DOCUMENT UPLOAD</div>
+
+      <div class="welcome-message">
+        Hi, Welcome to Evercare's Document Upload System.
+      </div>
+
+      <div class="document-details">
+        <div class="document-details-header">
+          1. ID Verification : For safety and quality assurance, please upload a
+          government-issued ID. (photo or scan)
         </div>
 
-        <div class = "welcome-message">
-            Hi, Welcome to Evercare's Document Upload System.
+        <div class="document-disclaimer">
+          <i class="fa fa-lock lock"></i> Your ID will never be shared with a
+          client
         </div>
-            
-        <div class = "document-details">
-            <div class = "document-details-header">1. ID Verification :  For safety and quality assurance, please upload a government-issued ID. (photo or scan)</div>
+      </div>
 
-            <div class = "document-disclaimer"> <i class="fa fa-lock lock"></i> Your ID will never be shared with a client </div>
+      <div class="document-details">
+        <div class="document-details-header">
+          2. Certifications : To verify your profession please upload valid
+          certificates.
         </div>
 
-        <div class = "document-details">
-            <div class = "document-details-header">2. Certifications :  To verify your profession please upload valid certificates. </div>
-            
+        <div class="document-disclaimer">
+          <i class="fa fa-lock lock"></i>
+          Certifications are only collected for internal purposes. They are not
+          shared with anyone.
+        </div>
 
-            <div class = "document-disclaimer">
-                <i class="fa fa-lock lock"></i> 
-                Certifications are only collected for internal purposes. They are not shared with anyone.
+        <div class="container-radio-buttons">
+          <div class="header">
+            Select a caregiver type to see what certifications are required.
+          </div>
+
+          <div class="radio-buttons">
+            <div>
+              <input
+                type="radio"
+                id="Nurse"
+                name="caregiver-type"
+                value="Nurse"
+              />
+              <label for="Nurse">Nurse</label>
             </div>
 
-            <div class = "container-radio-buttons">
-                <div class = "header"> Select a caregiver type to see what certifications are required. </div>
-                
-                <div class = "radio-buttons">
-                    <div>
-                        <input type="radio" id="Nurse" name="caregiver-type" value="Nurse">
-                        <label for="Nurse">Nurse</label>
-                    </div>
-                    
-                    <div>
-                        <input type="radio" id="HCW" name="caregiver-type" value="Health Care Worker">
-                        <label for="HCW">Health Care Worker</label>
-                    </div>
-                </div>
+            <div>
+              <input
+                type="radio"
+                id="HCW"
+                name="caregiver-type"
+                value="Health Care Worker"
+              />
+              <label for="HCW">Health Care Worker</label>
             </div>
+          </div>
         </div>
+      </div>
 
-        <form class="document-upload-form">
-            <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
-            <label class="button" for="fileElem">Select some files</label>
-        </form>
-        
-        <div id="drop-area"></div>
-            
-        
+      <form class="document-upload-form">
+        <input
+          type="file"
+          id="fileElem"
+          multiple
+          accept="image/*"
+          onchange="handleFiles(this.files)"
+        />
+        <label class="button" for="fileElem">Select some files</label>
+      </form>
+
+      <div id="drop-area"></div>
     </div>
-    
-  <script src="js/scripts.js"></script>
-</body>
+
+    <script src="js/scripts.js"></script>
+  </body>
 </html>

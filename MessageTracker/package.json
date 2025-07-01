@@ -22,6 +22,6 @@
     "@babel/plugin-transform-runtime": "^7.9.0"
   },
   "dependencies": {
-    "googlesheets": "file:../Google-Sheets/prod"
+    "googlesheets": "file:../GoogleSheets/prod"
   }
 }

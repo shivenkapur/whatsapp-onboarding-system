@@ -10,7 +10,7 @@
     "puppeteer-extra-plugin-stealth": "^2.4.9",
     "websocket": "^1.0.31",
     "messagetracker": "file:../MessageTracker/prod",
-    "googlesheets": "file:../Google-Sheets/prod"
+    "googlesheets": "file:../GoogleSheets/prod"
   },
   "scripts": {
     "dev": "npx babel-node --presets @babel/env index.js",

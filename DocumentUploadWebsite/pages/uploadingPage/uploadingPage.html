@@ -1,64 +1,80 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="en">
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
 
     <title>Evercare Caregivers Secure Document Upload Website</title>
-    <meta name="description" content="Evercare">
-    <meta name="author" content="Everacre HK Limited">
+    <meta name="description" content="Evercare" />
+    <meta name="author" content="Everacre HK Limited" />
 
-    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="uploadingPage.css">
-    <link rel="stylesheet" href="../../static/css/shared-styles.css">
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="uploadingPage.css" />
+    <link rel="stylesheet" href="../../static/css/shared-styles.css" />
+  </head>
 
-</head>
-
-<body>
-
+  <body>
     <nav></nav>
 
-    <div class = "container">
-        <div class = "header">
-            EVERCARE DOCUMENT UPLOAD
-        </div>
-            
-        <div class = "document-details">
-            <div class = "document-details-header">1. ID Verification :  For safety and quality assurance, please upload a government-issued ID. (photo or scan)</div>
+    <div class="container">
+      <div class="header">EVERCARE DOCUMENT UPLOAD</div>
 
-            <div class = "document-disclaimer"> <i class="fa fa-lock lock"></i> Your ID will never be shared with a client </div>
+      <div class="document-details">
+        <div class="document-details-header">
+          1. ID Verification : For safety and quality assurance, please upload a
+          government-issued ID. (photo or scan)
         </div>
 
-        <div class = "document-details">
-            <div class = "document-details-header">2. Certifications :  To verify your profession please upload the following valid certificates. </div>
-            
-            <div id = "document-information"> 
-                1. Practising Certification
-                2. Whatevs
-            </div>
+        <div class="document-disclaimer">
+          <i class="fa fa-lock lock"></i> Your ID will never be shared with a
+          client
+        </div>
+      </div>
 
-            <div class = "document-disclaimer">
-                <i class="fa fa-lock lock"></i> 
-                Certifications are only collected for internal purposes. They are not shared with anyone.
-            </div>
+      <div class="document-details">
+        <div class="document-details-header">
+          2. Certifications : To verify your profession please upload the
+          following valid certificates.
         </div>
 
-        <form class="document-upload-form">
-            <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
-            <label class="button" for="fileElem">Select some files</label>
-        </form>
-        
-        <div id="drop-area"></div>
-            
-        <button class = "button" onClick = "goToUploadingPage()"> BACK </button>
-        
+        <div id="document-information">
+          1. Practising Certification 2. Whatevs
+        </div>
+
+        <div class="document-disclaimer">
+          <i class="fa fa-lock lock"></i>
+          Certifications are only collected for internal purposes. They are not
+          shared with anyone.
+        </div>
+      </div>
+
+      <form class="document-upload-form">
+        <input
+          type="file"
+          id="fileElem"
+          multiple
+          accept="image/*"
+          onchange="handleFiles(this.files)"
+        />
+        <label class="button" for="fileElem">Select some files</label>
+      </form>
+
+      <div id="drop-area"></div>
+
+      <button class="button" onClick="goToUploadingPage()">BACK</button>
     </div>
-    
-  <script>
-        function goToUploadingPage(){
-            location.href = "../welcomePage/welcomePage.html";
-        }
+
+    <script>
+      function goToUploadingPage() {
+        location.href = "../welcomePage/welcomePage.html";
+      }
     </script>
-</body>
+  </body>
 </html>
